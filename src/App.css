@@ -66,3 +66,41 @@ h1 em, h2 em { font-style: normal; color: var(--cyan); }
 .arena-breakdown { padding-top: 20px; font-size: 11px; }
 .arena-breakdown span { gap: 7px; }
 .arena-breakdown b { font-size: 18px; }
+
+/* Global type scale: keep the portfolio readable at normal desktop zoom. */
+.utility-bar { font-size: 11px; }
+.brand { font-size: 12px; }
+.nav-links { font-size: 13px; }
+.nav-cta, .button { font-size: 13px; }
+.eyebrow, .project-type, .stack-label { font-size: 13px; }
+.hero-role { font-size: 22px; }
+.hero-stats small { font-size: 11px; }
+.section-note { font-size: 17px; }
+.project-main h3 { font-size: 44px; }
+.project-summary { font-size: 19px; line-height: 1.85; }
+.project-stack span, .stack-items span { font-size: 14px; padding: 10px 12px; }
+.project-metrics span { font-size: 18px; }
+.details-button { font-size: 14px; }
+.experience-top h3 { font-size: 31px; }
+.experience-location, .education-item > p, .coursework > p:last-child { font-size: 14px; }
+.experience-date { font-size: 11px; }
+.experience-card ul { font-size: 15px; line-height: 1.85; }
+.education-date { font-size: 11px; }
+.education-item h3 { font-size: 18px; }
+.education-item strong { font-size: 14px; }
+.arena-breakdown { font-size: 13px; }
+.arena-proof strong { font-size: 12px; }
+.arena-proof span { font-size: 15px; }
+.contact-copy > p { font-size: 17px; }
+.contact-links a { font-size: 14px; }
+.footer { font-size: 11px; }
+
+@media (max-width: 800px) {
+	.utility-bar { font-size: 8px; }
+	.nav-links { font-size: 14px; }
+	.hero-role { font-size: 18px; }
+	.section-note { font-size: 16px; }
+	.project-main h3 { font-size: 34px; }
+	.project-summary { font-size: 17px; }
+	.experience-card ul { font-size: 14px; }
+}
