@@ -1,9 +1,6 @@
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Environment, Float, OrbitControls, Sparkles } from '@react-three/drei'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, Check, Code2, Database, Mail, Menu, Moon, Network, Orbit, Sparkles as SparkleIcon, Sun, X, Zap } from 'lucide-react'
-import { useRef, useState } from 'react'
-import * as THREE from 'three'
+import { useState } from 'react'
 import './App.css'
 
 type Project = {
@@ -90,31 +87,6 @@ const education = [
 ]
 
 
-function NeuralScene() {
-  const group = useRef<THREE.Group>(null)
-  useFrame((state) => {
-    if (!group.current) return
-    group.current.rotation.y = state.clock.elapsedTime * 0.08 + state.pointer.x * 0.12
-    group.current.rotation.x = state.pointer.y * 0.08
-  })
-  return (
-    <group ref={group}>
-      <Float speed={1.3} rotationIntensity={0.2} floatIntensity={0.5}>
-        <mesh>
-          <icosahedronGeometry args={[1.15, 2]} />
-          <meshStandardMaterial color="#101d2c" emissive="#0b5460" emissiveIntensity={1.7} wireframe transparent opacity={0.85} />
-        </mesh>
-        <mesh scale={0.6}>
-          <icosahedronGeometry args={[1.15, 2]} />
-          <meshBasicMaterial color="#c3f53c" wireframe transparent opacity={0.16} />
-        </mesh>
-      </Float>
-      <Sparkles count={90} scale={7} size={2} speed={0.25} color="#22d3ee" />
-      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.55} />
-    </group>
-  )
-}
-
 function App() {
   const [activeFilter, setActiveFilter] = useState('ALL')
   const [selected, setSelected] = useState<Project | null>(null)
@@ -124,6 +96,7 @@ function App() {
 
   return (
     <div className={light ? 'site light' : 'site'}>
+      <div className="utility-bar"><span><span className="status-dot" /> OPEN TO AI/ML ROLES · FULL-TIME &amp; INTERNSHIPS</span><span>INDIA · INTERNATIONAL · REMOTE</span><span className="utility-contact">lavieee2206@gmail.com</span></div>
       <nav className="nav">
         <a className="brand" href="#top"><span className="brand-mark">LM</span><span>LAVANYA<br /><b>MADAN</b></span></a>
         <div className={menuOpen ? 'nav-links open' : 'nav-links'}>
@@ -141,18 +114,9 @@ function App() {
       </nav>
 
       <main id="top">
-        <section className="hero section-shell">
-          <div className="hero-copy">
-            <motion.p className="eyebrow" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>AI ENGINEER / SYSTEMS BUILDER</motion.p>
-            <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>Intelligence,<br /><em>engineered.</em></motion.h1>
-            <motion.p className="hero-intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }}>I build AI products that retrieve evidence, use tools, evaluate their own outputs, and hold up beyond the notebook.</motion.p>
-            <motion.div className="hero-links" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}>
-              <a className="button primary" href="#work">Explore the work <ArrowUpRight size={16} /></a>
-              <a className="text-link" href="https://www.linkedin.com/in/lavanya-madaan-407237268" target="_blank" rel="noreferrer">Connect on LinkedIn <ArrowUpRight size={15} /></a>
-            </motion.div>
-            <div className="hero-proof"><span><span className="status-dot" /> Available for AI/ML roles</span><span>India · International · Remote</span></div>
-          </div>
-          <div className="hero-scene"><div className="scene-label"><span>LIVE SYSTEM</span><span>01 / 05</span></div><Canvas camera={{ position: [0, 0, 4.5], fov: 42 }}><ambientLight intensity={0.5} /><pointLight position={[3, 2, 4]} color="#22d3ee" intensity={18} /><pointLight position={[-3, -2, 2]} color="#c3f53c" intensity={10} /><NeuralScene /><Environment preset="night" /></Canvas><div className="scene-caption"><span>REASON</span><span>RETRIEVE</span><span>ACT</span><span>EVALUATE</span></div></div>
+        <section className="hero hero-reference section-shell">
+          <div className="hero-reference-copy"><motion.p className="eyebrow" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>AI ENGINEER · GENAI · LLM SYSTEMS</motion.p><motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .15 }}>Lavanya<br /><em>Madan.</em></motion.h1><p className="hero-role">I build production AI systems that retrieve evidence, reason over context, use tools, and improve under measurement.</p><div className="hero-links"><a className="button primary" href="#work">See the work <ArrowUpRight size={16} /></a><a className="text-link" href="mailto:lavieee2206@gmail.com">Contact me <ArrowUpRight size={15} /></a></div><div className="hero-stats"><span><b>1,115</b><small>LeetCode solved</small></span><span><b>5</b><small>AI systems</small></span><span><b>0.9464</b><small>FraudForge AUC</small></span></div></div>
+          <div className="hero-portrait"><div className="portrait-grid" /><img src="https://raw.githubusercontent.com/lavanya0505/lavanya0505/main/profile.jpg" alt="Lavanya Madan" /><div className="portrait-tag top-tag">AI/ML<br /><b>ENGINEER</b></div><div className="portrait-tag bottom-tag">AGENTIC AI · RAG<br /><b>2026</b></div><div className="portrait-orbit orbit-one" /><div className="portrait-orbit orbit-two" /></div>
         </section>
 
         <section className="marquee"><div className="marquee-track">AGENTIC AI <span>✦</span> RAG SYSTEMS <span>✦</span> LLM EVALUATION <span>✦</span> PRODUCTION ML <span>✦</span> AGENTIC AI <span>✦</span> RAG SYSTEMS <span>✦</span> LLM EVALUATION <span>✦</span> PRODUCTION ML <span>✦</span></div></section>
@@ -167,6 +131,8 @@ function App() {
             </motion.article>)}
           </div>
         </section>
+
+        <section id="arena" className="section-shell content-section arena-section"><div className="section-heading"><div><p className="eyebrow">02 / THE ARENA</p><h2>Rated, ranked<br /><em>and measured.</em></h2></div><p className="section-note">Proof from the profile, the problem set and the systems themselves. Click through to inspect the live sources.</p></div><div className="arena-cards"><a className="arena-card" href="https://leetcode.com/u/lavieee2206" target="_blank" rel="noreferrer"><div className="arena-card-top"><span>LeetCode</span><b>1,115</b></div><small>@lavieee2206 · PROBLEMS SOLVED</small><img src="https://leetcard.jacoblin.cool/lavieee2206?theme=dark&font=JetBrains%20Mono&ext=heatmap" alt="Lavanya's LeetCode statistics" /><div className="arena-breakdown"><span><b>259</b> EASY</span><span><b>602</b> MEDIUM</span><span><b>254</b> HARD</span></div></a><div className="arena-card github-arena"><div className="arena-card-top"><span>GitHub</span><b>17</b></div><small>@lavanya0505 · PUBLIC REPOSITORIES</small><img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=lavanya0505&theme=github_dark" alt="GitHub contribution summary" /><div className="arena-breakdown"><span><b>AI/ML</b> BUILDER</span><span><b>76</b> CONTRIBUTIONS</span><span><b>2023</b> MEMBER SINCE</span></div></div></div><div className="arena-proof"><strong>ACROSS THE STACK</strong><b>Reason · Retrieve · Act · Evaluate</b><span>From 19-format document ingestion to 590K-transaction fraud benchmarks, the numbers stay attached to the engineering decisions.</span></div></section>
 
         <section id="experience" className="section-shell content-section experience-section">
           <div className="section-heading"><div><p className="eyebrow">BACKGROUND / 2022—26</p><h2>Where I&apos;ve been,<br /><em>and what I shipped.</em></h2></div><p className="section-note">AI engineering across enterprise GenAI, conversational search, evaluation systems and production delivery.</p></div>
