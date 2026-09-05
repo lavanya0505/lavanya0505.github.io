@@ -1,7 +1,7 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, Float, OrbitControls, Sparkles } from '@react-three/drei'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowUpRight, Check, Code2, Mail, Menu, Moon, Network, Orbit, Sparkles as SparkleIcon, Sun, X, Zap } from 'lucide-react'
+import { ArrowUpRight, Check, Code2, Database, Mail, Menu, Moon, Network, Orbit, Sparkles as SparkleIcon, Sun, X, Zap } from 'lucide-react'
 import { useRef, useState } from 'react'
 import * as THREE from 'three'
 import './App.css'
@@ -62,10 +62,33 @@ const projects: Project[] = [
 ]
 
 const stackGroups = [
-  { label: 'INTELLIGENCE', icon: SparkleIcon, items: ['Python', 'LLMs', 'RAG', 'Embeddings', 'Agents', 'Evaluation', 'MCP'] },
-  { label: 'SYSTEMS', icon: Network, items: ['FastAPI', 'PostgreSQL', 'pgvector', 'Redis', 'FAISS', 'NetworkX', 'Docker'] },
-  { label: 'DELIVERY', icon: Orbit, items: ['AWS', 'Bedrock', 'Airflow', 'MLflow', 'Prometheus', 'GitHub Actions', 'React'] },
+  { label: 'LANGUAGES', icon: Code2, items: ['Python', 'JavaScript', 'TypeScript', 'Node.js', 'SQL', 'HTML', 'CSS', 'Bash'] },
+  { label: 'AI / GENAI', icon: SparkleIcon, items: ['LLMs', 'Prompt Engineering', 'RAG', 'Vector Search', 'LangChain', 'LangGraph', 'Agents', 'Evaluation', 'HuggingFace'] },
+  { label: 'BACKEND / DATA', icon: Database, items: ['FastAPI', 'PostgreSQL', 'MongoDB', 'pgvector', 'Redis', 'FAISS', 'NetworkX', 'REST APIs'] },
+  { label: 'ML / VISION', icon: Orbit, items: ['TensorFlow', 'OpenCV', 'Anomaly Detection', 'SentenceTransformers', 'Tesseract OCR', 'MLOps', 'Model Evaluation'] },
+  { label: 'CLOUD / DEVOPS', icon: Network, items: ['AWS', 'Bedrock', 'Docker', 'Kubernetes concepts', 'CI/CD', 'GitHub Actions', 'Linux'] },
+  { label: 'PRODUCT / COLLAB', icon: Check, items: ['React.js', 'Gradio', 'Streamlit', 'Technical Documentation', 'Agile / SCRUM', 'Cross-functional Leadership'] },
 ]
+
+const experiences = [
+  {
+    company: 'PwC', location: 'Gurugram, India', role: 'GenAI and Python Engineer', date: 'AUG 2026 — PRESENT', color: '#22d3ee',
+    bullets: ['Developing production-grade GenAI solutions in Python with secure coding practices, privacy-aware user experiences and measurable business impact.', 'Architecting end-to-end LLM pipelines from data preparation through evaluation and deployment for enterprise clients.', 'Collaborating with product, design and engineering teams on solution architecture, technical requirements and agile delivery.', 'Evaluating emerging GenAI frameworks and LLM capabilities while maintaining reliability and security standards.'],
+  },
+  {
+    company: 'Connecwrk', location: 'Gurugram, India', role: 'AI/ML Engineer Intern', date: 'JUL 2025 — APR 2026', color: '#a78bfa',
+    bullets: ['Built evaluation harnesses for a production natural-language discovery experience, measuring response quality, consistency, relevance and structured defects.', 'Designed and shipped FastAPI services for conversational search, improving system match accuracy by 40% through iterative performance refinement.', 'Built Docker and GitHub Actions CI/CD pipelines for repeatable AI-service delivery, monitoring and minimal-downtime rollouts.', 'Designed SQL and MongoDB data layers and validation pipelines for high-throughput production features under real user load.'],
+  },
+  {
+    company: 'QCall AI & 60dB AI', location: 'Remote / India', role: 'AI/ML Engineer', date: 'MAY 2026 — JUN 2026', color: '#f472b6',
+    bullets: ['Designed multi-stage verification pipelines for production voice AI systems and customer-facing conversational quality.', 'Authored version-controlled prompt and response libraries so dialogue behavior could be managed like production code.', 'Built logging and tracing tools for agent behavior visibility, root-cause analysis and stakeholder-facing quality diagnosis.'],
+  },
+]
+
+const education = [
+  { school: 'The NorthCap University', place: 'Gurugram, India', degree: 'Bachelor of Technology — Computer Science (AI/ML)', date: 'JUL 2022 — JUN 2026', detail: 'GPA: 8.65', color: '#c3f53c' },
+]
+
 
 function NeuralScene() {
   const group = useRef<THREE.Group>(null)
@@ -105,6 +128,7 @@ function App() {
         <a className="brand" href="#top"><span className="brand-mark">LM</span><span>LAVANYA<br /><b>MADAN</b></span></a>
         <div className={menuOpen ? 'nav-links open' : 'nav-links'}>
           <a href="#work" onClick={() => setMenuOpen(false)}>Work</a>
+          <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
           <a href="#stack" onClick={() => setMenuOpen(false)}>Stack</a>
           <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
@@ -141,6 +165,14 @@ function App() {
               <div className="project-index">{project.number}</div><div className="project-main"><p className="project-type">{project.type}</p><h3>{project.title}</h3><p className="project-summary">{project.summary}</p><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div></div>
               <div className="project-metrics">{project.metrics.map((metric) => <span key={metric}>{metric}</span>)}<button className="details-button" onClick={() => setSelected(project)}>Read system notes <ArrowUpRight size={15} /></button></div>
             </motion.article>)}
+          </div>
+        </section>
+
+        <section id="experience" className="section-shell content-section experience-section">
+          <div className="section-heading"><div><p className="eyebrow">BACKGROUND / 2022—26</p><h2>Where I&apos;ve been,<br /><em>and what I shipped.</em></h2></div><p className="section-note">AI engineering across enterprise GenAI, conversational search, evaluation systems and production delivery.</p></div>
+          <div className="resume-layout">
+            <div className="experience-list">{experiences.map((experience) => <article className="experience-card" key={experience.company} style={{ '--experience-color': experience.color } as React.CSSProperties}><div className="experience-top"><div><p className="project-type">{experience.role}</p><h3>{experience.company}</h3><p className="experience-location">{experience.location}</p></div><span className="experience-date">{experience.date}</span></div><ul>{experience.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul></article>)}</div>
+            <aside className="education-card"><p className="eyebrow">EDUCATION</p>{education.map((item) => <div className="education-item" key={item.school}><span className="timeline-dot" style={{ background: item.color }} /><p className="education-date">{item.date}</p><h3>{item.school}</h3><p>{item.place}</p><p>{item.degree}</p><strong>{item.detail}</strong></div>)}<div className="coursework"><p className="eyebrow">COURSEWORK</p><p>Data Structures &amp; Algorithms · Operating Systems · Software Engineering · Database Management · Machine Learning · Natural Language Processing · Computer Networks · Distributed Systems</p></div></aside>
           </div>
         </section>
 
